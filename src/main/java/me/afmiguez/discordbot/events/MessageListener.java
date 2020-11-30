@@ -15,8 +15,12 @@ public abstract class MessageListener {
            .filter(message -> message.getAuthor().map(user -> !user.isBot()).orElse(false))   //verifica se o user não é bot
            .filter(message -> message.getContent().equalsIgnoreCase("!hey"))            //verifica se a mensagem é !hey
            .flatMap(Message::getChannel)                                                           //busca o canal da mensagem
-           .flatMap(channel -> channel.createMessage(random.nextInt(100)+""))                           //devolve uma mensagem para o canal
+           .flatMap(channel -> channel.createMessage(geraStringComNumeroAleatorio()))               //devolve uma mensagem para o canal
            .then();
+    }
+
+    private String geraStringComNumeroAleatorio(){
+        return random.nextInt(100)+"";
     }
 
 }
